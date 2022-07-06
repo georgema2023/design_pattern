@@ -2,7 +2,7 @@ package com.example.design.pattern.creational.singleton;
 
 import java.io.Serializable;
 
-public class HungrySingleton implements Serializable {
+public class HungrySingleton implements Serializable,Cloneable {
     private final static HungrySingleton singleton = new HungrySingleton();
     private HungrySingleton(){
         if (singleton!=null){
@@ -15,5 +15,10 @@ public class HungrySingleton implements Serializable {
 
     private Object readResolve(){
         return singleton;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return getInstance();
     }
 }
